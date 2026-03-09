@@ -2,7 +2,7 @@ import streamlit as st
 from datetime import time as dtime
 
 from auth import get_login_url, handle_callback, is_logged_in, logout
-from db import get_or_create_user, is_user_blocked, load_user_data, save_user_data
+from db import get_or_create_user, is_user_blocked, load_user_data, save_user_data, save_schedule
 from limits import check_and_increment_limit, get_remaining
 from ai import generate_schedule
 
@@ -83,7 +83,8 @@ with col2:
         logout()
         st.rerun()
 
-st.markdown(f"Hello, **{name}** 👋")
+first_name = name.split()[0] if name else "parent"
+st.markdown(f"🌙 Hello, **{first_name}**! SleepBuddy helps you plan your baby's sleep rhythm based on their age and wake-up time. Enter today's details below and get a full day schedule — backed by AAP, WHO and NHS guidelines. Powered by AI.")
 
 remaining = get_remaining(email)
 st.info(f"Remaining today: **{remaining} / 5** schedule generations")
@@ -166,12 +167,20 @@ if generate_btn:
     with st.spinner("Generating your baby's schedule..."):
         try:
             schedule = generate_schedule(wake_str, naps_clean, baby_age)
-            st.success("Here's your schedule for today!")
-            st.markdown(schedule)
+            save_schedule(email, schedule)
+            st.session_state["last_schedule"] = schedule
             st.info(f"Remaining today: **{remaining_after} / 5** schedule generations")
+            st.rerun()
         except Exception as e:
             st.error(f"Something went wrong: {e}")
 
+
+# ── Show last schedule ────────────────────────────────────────────────────────
+
+last_schedule = st.session_state.get("last_schedule") or saved.get("last_schedule")
+if last_schedule:
+    st.success("Here's your schedule for today!")
+    st.markdown(last_schedule)
 
 # ── Footer ─────────────────────────────────────────────────────────────────────
 

@@ -65,8 +65,16 @@ def load_user_data(email: str) -> dict:
             {"start": user.get("last_nap2_start"), "end": user.get("last_nap2_end")},
             {"start": user.get("last_nap3_start"), "end": user.get("last_nap3_end")},
         ]
+        data["last_schedule"] = user.get("last_schedule")
+    else:
+        data["last_schedule"] = None
 
     return data
+
+
+def save_schedule(email: str, schedule: str):
+    db = get_supabase_client()
+    db.table("users").update({"last_schedule": schedule}).eq("email", email).execute()
 
 
 def save_user_data(email: str, age: int, wake_time: str, naps: list):
