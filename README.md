@@ -1,5 +1,7 @@
 # 🌙 SleepBuddy
 
+**Live app:** https://sleepbuddy-jnkc5xqmpozqeysquaazhw.streamlit.app
+
 > Hello, parent! SleepBuddy helps you plan your baby's sleep rhythm based on their age and wake-up time. Get a full day schedule — backed by AAP, WHO and NHS guidelines. Powered by AI.
 
 ---

@@ -84,7 +84,7 @@ with col2:
         st.rerun()
 
 first_name = name.split()[0] if name else "parent"
-st.markdown(f"🌙 Hello, **{first_name}**! SleepBuddy helps you plan your baby's sleep rhythm based on their age and wake-up time. Enter today's details below and get a full day schedule — backed by AAP, WHO and NHS guidelines. Powered by AI.")
+st.markdown(f"🌙 Hello, **{first_name}**! SleepBuddy helps you plan your baby's sleep rhythm based on their age and wake-up time. Enter today's details below and get a full day schedule — backed by AAP, WHO and NHS guidelines. Powered by AI. If this app helps you, you can [buy me a coffee](https://buycoffee.to/icearas). Thank you! ☕")
 
 remaining = get_remaining(email)
 st.info(f"Remaining today: **{remaining} / 5** schedule generations")
