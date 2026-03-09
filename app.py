@@ -70,7 +70,7 @@ if not is_logged_in():
     login_url = get_login_url()
     st.link_button("🔐 Sign in with Google", login_url, use_container_width=True)
     st.markdown("---")
-    st.caption("⚠️ Educational tool only. Does not replace consultation with a pediatrician.")
+    st.caption("Made by Arkadiusz Michnej · ⚠️ Educational tool only. Does not replace consultation with a pediatrician.")
     st.stop()
 
 
