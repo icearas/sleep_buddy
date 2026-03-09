@@ -13,7 +13,7 @@ def generate_schedule(wake_time: str, naps: list, baby_age_months: int) -> str:
 
     response = client.messages.create(
         model="claude-haiku-4-5-20251001",
-        max_tokens=1500,
+        max_tokens=1100,
         system=KNOWLEDGE_BASE,
         messages=[{"role": "user", "content": user_input}],
     )
