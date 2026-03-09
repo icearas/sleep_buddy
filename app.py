@@ -189,4 +189,4 @@ st.markdown(
     "🌙 SleepBuddy | Based on AAP, WHO & NHS guidelines | "
     "[☕ Buy me a coffee](https://buycoffee.to/icearas)"
 )
-st.caption("⚠️ Educational tool only. Does not replace consultation with a pediatrician.")
+st.caption("Made by Arkadiusz Michnej · ⚠️ Educational tool only. Does not replace consultation with a pediatrician.")
