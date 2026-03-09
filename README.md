@@ -147,3 +147,9 @@ At 5 requests/day per user: ~$0.006/user/day = **~$0.18/user/month**
 ---
 
 ⚠️ Educational tool only. Does not replace consultation with a pediatrician.
+
+---
+
+## TODO
+
+- [ ] Set up [UptimeRobot](https://uptimerobot.com) — free HTTP monitor pinging the app every 5 min to prevent cold starts (1-3 min load time on Streamlit free tier)

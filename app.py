@@ -29,6 +29,20 @@ def _fmt_time(t) -> str | None:
     return t.strftime("%H:%M")
 
 
+def _max_naps(age_months: int) -> int:
+    """Return expected number of naps based on baby's age (AAP/WHO/NHS)."""
+    if age_months <= 3:
+        return 5
+    elif age_months <= 5:
+        return 4
+    elif age_months <= 8:
+        return 3
+    elif age_months <= 14:
+        return 2
+    else:
+        return 1
+
+
 # ── OAuth callback handling ───────────────────────────────────────────────────
 
 def handle_oauth_callback():
@@ -114,10 +128,11 @@ wake_time = st.time_input(
 
 st.markdown("**Naps today** (leave blank if not taken yet)")
 
-nap_cols = st.columns(3)
+max_naps = _max_naps(baby_age)
+nap_cols = st.columns(max_naps)
 naps = []
 
-for i in range(3):
+for i in range(max_naps):
     with nap_cols[i]:
         st.markdown(f"**Nap {i + 1}**")
         nap_start = st.time_input(
@@ -154,7 +169,7 @@ if generate_btn:
 
     # Only include naps where both times are set
     naps_clean = [n for n in naps if n["start"] and n["end"]]
-    while len(naps_clean) < 3:
+    while len(naps_clean) < 5:
         naps_clean.append({"start": None, "end": None})
 
     save_user_data(email, baby_age, wake_str, naps_clean)

@@ -46,7 +46,7 @@ def load_user_data(email: str) -> dict:
     result = db.table("users").select("*").eq("email", email).execute()
 
     if not result.data:
-        return {"baby_age_months": 8, "wake_time": None, "naps": [{"start": None, "end": None}] * 3}
+        return {"baby_age_months": 8, "wake_time": None, "naps": [{"start": None, "end": None}] * 5}
 
     user = result.data[0]
     today = date.today()
@@ -55,7 +55,7 @@ def load_user_data(email: str) -> dict:
     data = {
         "baby_age_months": user.get("baby_age_months") or 8,
         "wake_time": None,
-        "naps": [{"start": None, "end": None}] * 3,
+        "naps": [{"start": None, "end": None}] * 5,
     }
 
     if daily_data_date and str(daily_data_date) == str(today):
@@ -64,6 +64,8 @@ def load_user_data(email: str) -> dict:
             {"start": user.get("last_nap1_start"), "end": user.get("last_nap1_end")},
             {"start": user.get("last_nap2_start"), "end": user.get("last_nap2_end")},
             {"start": user.get("last_nap3_start"), "end": user.get("last_nap3_end")},
+            {"start": user.get("last_nap4_start"), "end": user.get("last_nap4_end")},
+            {"start": user.get("last_nap5_start"), "end": user.get("last_nap5_end")},
         ]
         data["last_schedule"] = user.get("last_schedule")
     else:
@@ -88,6 +90,10 @@ def save_user_data(email: str, age: int, wake_time: str, naps: list):
         "last_nap2_end": naps[1].get("end"),
         "last_nap3_start": naps[2].get("start"),
         "last_nap3_end": naps[2].get("end"),
+        "last_nap4_start": naps[3].get("start"),
+        "last_nap4_end": naps[3].get("end"),
+        "last_nap5_start": naps[4].get("start"),
+        "last_nap5_end": naps[4].get("end"),
         "daily_data_date": date.today().isoformat(),
     }).eq("email", email).execute()
 
