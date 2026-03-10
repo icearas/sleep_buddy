@@ -100,6 +100,19 @@ with col2:
 first_name = name.split()[0] if name else "parent"
 st.markdown(f"🌙 Hello, **{first_name}**! SleepBuddy helps you plan your baby's sleep rhythm based on their age and wake-up time. Enter today's details below and get a full day schedule — backed by AAP, WHO and NHS guidelines. Powered by AI. If this app helps you, you can [buy me a coffee](https://buycoffee.to/icearas). Thank you! ☕")
 
+with st.expander("📖 How to use SleepBuddy"):
+    st.markdown("""
+1. Select your baby's age in months — the app will remember it for next time
+2. Enter today's wake-up time
+3. Add naps that already happened today (optional — up to 5)
+4. Hit **Generate daily schedule** and get a full day plan
+
+**Good to know:**
+- You can generate up to 5 schedules per day — each generation is saved automatically
+- Your baby's age is remembered permanently — no need to re-enter it
+- Wake-up time and naps reset every 24h — fresh start each day
+""")
+
 remaining = get_remaining(email)
 st.info(f"Remaining today: **{remaining} / 5** schedule generations")
 
