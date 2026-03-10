@@ -45,6 +45,8 @@ sleepbuddy-app/
 - **Daily schedule generation** — AI-powered, based on age + wake-up time + naps taken
 - **Usage limit** — 5 AI requests per user per day, auto-reset at midnight
 - **Admin control** — block/unblock users, reset limits via Supabase Dashboard
+- **Dynamic nap slots** — number of nap inputs adjusts based on baby's age (1–5 naps)
+- **In-app manual** — collapsible how-to guide visible after login
 
 ---
 
